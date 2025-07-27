@@ -60,7 +60,7 @@ From the root shell, I navigated to the `/etc/` directory, which contains crucia
 ### Extracting Password Hashes from shadow:
 I then viewed the contents of the `shadow` file (`/etc/shadow`). This file contains the hashed passwords for user accounts and is readable only by root for security reasons.
 
-![](screenshots/8.png)
+![](screenshots/3.png)
 
 ![](screenshots/9.png)
 
