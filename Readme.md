@@ -34,10 +34,12 @@ I logged into my Metasploitable2 virtual machine to find its IP address. Subsequ
 
 ![](screenshots/2.png)
 
+
 ### Metasploit Module Selection:
 I launched the Metasploit Framework console (msfconsole) and searched for available exploits related to `vsftpd 2.3.4`. The `exploit/unix/ftp/vsftpd_234_backdoor` module was the primary candidate.
 
 ![](screenshots/3.png)
+
 
 ### Module Configuration and Exploitation:
 I selected the identified exploit module and checked its required options using `show options`. The `RHOSTS` (remote host) option was the only mandatory parameter. I set `RHOSTS` to the IP address of Metasploitable2 and then executed the exploit using the `exploit` command. The exploit leveraged the backdoor in VSftpd 2.3.4, which allows arbitrary command execution. Upon successful exploitation, Metasploit provided a root shell on the target machine.
@@ -57,12 +59,14 @@ From the root shell, I navigated to the `/etc/` directory, which contains crucia
 
 ![](screenshots/7.png)
 
+
 ### Extracting Password Hashes from shadow:
 I then viewed the contents of the `shadow` file (`/etc/shadow`). This file contains the hashed passwords for user accounts and is readable only by root for security reasons.
 
 ![](screenshots/8.png)
 
 ![](screenshots/9.png)
+
 
 ### Transferring Files with Netcat:
 To transfer the `passwd` and `shadow` files securely from the Metasploitable2 machine to my Kali Linux machine, I used Netcat.This allowed for direct, quick transfer of the sensitive files without relying on other services.
@@ -72,6 +76,7 @@ To transfer the `passwd` and `shadow` files securely from the Metasploitable2 ma
 ![](screenshots/11.png)
 
 ![](screenshots/12.png)
+
 
 ### Preparing Hashes for John the Ripper:
 Before cracking, I used the `unshadow` command (part of the John the Ripper suite) to combine the `passwd.txt` and `shadow.txt` files into a single format that John can readily process.
@@ -85,9 +90,4 @@ I then attempted to crack the hashes using John the Ripper with a standard wordl
 ![](screenshots/13.png)
 
 ![](screenshots/14.png)
-
-
-
-
-
 
